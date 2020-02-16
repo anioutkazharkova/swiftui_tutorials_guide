@@ -9,7 +9,6 @@
 import Foundation
 import SwiftUI
 
-
 struct SearchBar:UIViewRepresentable {
     @Binding var text: String
     var action: ((String)->Void)?

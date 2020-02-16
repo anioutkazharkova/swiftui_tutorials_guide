@@ -9,7 +9,7 @@
 import Foundation
 
 class NewsListInteractor :INewsListInteractor {
-   var output: INewsListPresenter?
+    var output: INewsListPresenter?
     
     private weak var newsService: INewsService? = DI.serviceContainer.newsService
     
@@ -45,7 +45,6 @@ class NewsListInteractor :INewsListInteractor {
                         self.page += 1
                         self.news.append(contentsOf: loaded)
                         self.output?.setupResponse(response: NewsListResponse.success(news: self.news))
-                        // self?.view?.setupNews(news: self?.news ?? [NewsItem]())
                     }
                 }
             }
@@ -54,7 +53,7 @@ class NewsListInteractor :INewsListInteractor {
     
     func synchronizeFavorite() {
         news = newsService?.syncWithFavorite(loadedNews: news) ?? [NewsItem]()
-        //view?.setupNews(news: news)
+        output?.setupResponse(response: NewsListResponse.success(news: news))
     }
     
     func updateFavorite(id: String){
@@ -72,9 +71,9 @@ class NewsListInteractor :INewsListInteractor {
         } else {
             removeFromFavorite(newsItem: item)
         }
-        /*   DispatchQueue.main.async {
-         self.view?.setupNews(news: self.news )
-         }*/
+        DispatchQueue.main.async {
+            self.output?.setupResponse(response: NewsListResponse.success(news: self.news))
+        }
     }
     
     private func addToFavorite(newsItem: NewsItem) {
@@ -85,15 +84,4 @@ class NewsListInteractor :INewsListInteractor {
         newsService?.removeFromFavorite(newsItem: newsItem)
     }
     
-    func selectItem(index: Int) {
-        let item = news[index]
-        // router?.navigateTo(screen: .NewsItem, item)
-    }
-    
-    func openFavorite() {
-        // router?.navigateTo(screen: .Favorite)
-    }
-    func openSearch() {
-        // router?.navigateTo(screen: .Search, news)
-    }
 }

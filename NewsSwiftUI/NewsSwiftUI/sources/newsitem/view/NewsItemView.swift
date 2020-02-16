@@ -12,11 +12,9 @@ import Combine
 struct NewsItemView: View{
     
     var output:INewsItemInteractor?
-    
-    @ObservedObject var model: NewsItemModel =  NewsItemModel.shared
+    @ObservedObject var model: NewsItemModel =  NewsItemModel()
     
     var body: some View {
-        //NavigationView{
         VStack(alignment: .leading, spacing: 0){
             CachedImage(withURL: model.data.urlToImage ?? "")
             Text(model.data.title ?? "").font(.system(size: 22)).bold().padding(EdgeInsets(top: 20,leading: 20,bottom: 0,trailing: 20))
@@ -25,16 +23,16 @@ struct NewsItemView: View{
             Button(action: {
                 UIApplication.shared.open(URL(string: self.model.data.url ?? "")!, options: [:], completionHandler: nil)
             }) {
-                Text("Show more").font(.system(size: 12)).padding(EdgeInsets(top:20,leading: 20,bottom: 20,trailing: 20))
+                SmallText(text: "Show more").padding(EdgeInsets(top:20,leading: 20,bottom: 20,trailing: 20))
             }
             Spacer()
-        }//.edgesIgnoringSafeArea(.top)
-            .navigationBarTitle(Text(""), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                self.output?.updateFavorite()
-            }){
-                Image(model.data.favorite ? "favorite" : "unfavorite").frame(width: 20, height: 20, alignment: .topTrailing)
-            })
+        }
+        .navigationBarTitle(Text(""), displayMode: .inline)
+        .navigationBarItems(trailing: Button(action: {
+            self.output?.updateFavorite()
+        }){
+            Image(model.data.favorite ? "favorite" : "unfavorite").frame(width: 20, height: 20, alignment: .topTrailing)
+        })
             .fixedSize(horizontal: false, vertical: false).onAppear {
                 self.output?.setupContent()
         }

@@ -11,14 +11,10 @@ import Combine
 
 struct NewsListView: View{
     var output: INewsListInteractor?
-    @State private var isNavigationBarHidden = true
     
-    @ObservedObject var model: NewsListModel =  NewsListModel.shared
+    @ObservedObject var model: NewsListModel =  NewsListModel()
     
-    init() {}
-    init(output: INewsListInteractor) {
-        self.output = output
-    }
+    init(){}
     
     var body: some View {
         List(model.data) { item in
@@ -38,16 +34,6 @@ struct NewsListView: View{
         }.onDisappear {
         }
     }
-    
-    func updateFavorite(id: String) {
-        
-    }
-}
-
-struct NewsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewsListView()
-    }
 }
 
 extension NewsListView : INewsListView {
@@ -55,3 +41,5 @@ extension NewsListView : INewsListView {
         self.model.update(data: data)
     }
 }
+
+
