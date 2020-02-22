@@ -26,7 +26,10 @@ struct ContainerView<Content>: IContainer, View where Content: View&IModelView {
         ZStack {
             content
         }.alert(isPresented: $containerModel.hasError){
-            Alert(title: Text(""), message: Text(containerModel.errorText), dismissButton: .default(Text("OK")))
+            Alert(title: Text(""), message: Text(containerModel.errorText), dismissButton: .default(Text("OK")){
+                self.containerModel.hasError = false
+                self.containerModel.errorText = ""
+                })
         }
     }
     
