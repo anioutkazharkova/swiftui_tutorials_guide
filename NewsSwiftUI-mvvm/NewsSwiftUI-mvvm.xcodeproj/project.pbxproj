@@ -53,6 +53,10 @@
 		632483BC24015FE800ED29E5 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6324839424015FE700ED29E5 /* SearchView.xib */; };
 		632483C024015FE800ED29E5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6324839B24015FE800ED29E5 /* DataModel.swift */; };
 		632483C32401638700ED29E5 /* IModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632483C22401638700ED29E5 /* IModel.swift */; };
+		632483C52401808100ED29E5 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632483C42401808000ED29E5 /* ContainerView.swift */; };
+		632483C72401809400ED29E5 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632483C62401809400ED29E5 /* BaseModel.swift */; };
+		632483C92401812A00ED29E5 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632483C82401812A00ED29E5 /* LazyView.swift */; };
+		632483CB240185C000ED29E5 /* IModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632483CA240185C000ED29E5 /* IModelView.swift */; };
 		63350972240156C3000FB880 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63350971240156C3000FB880 /* AppDelegate.swift */; };
 		63350974240156C3000FB880 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63350973240156C3000FB880 /* SceneDelegate.swift */; };
 		63350976240156C3000FB880 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63350975240156C3000FB880 /* ContentView.swift */; };
@@ -131,6 +135,10 @@
 		6324839424015FE700ED29E5 /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		6324839B24015FE800ED29E5 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		632483C22401638700ED29E5 /* IModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IModel.swift; sourceTree = "<group>"; };
+		632483C42401808000ED29E5 /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		632483C62401809400ED29E5 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		632483C82401812A00ED29E5 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		632483CA240185C000ED29E5 /* IModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IModelView.swift; sourceTree = "<group>"; };
 		6335096E240156C3000FB880 /* NewsSwiftUI-mvvm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NewsSwiftUI-mvvm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63350971240156C3000FB880 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63350973240156C3000FB880 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -449,6 +457,10 @@
 			isa = PBXGroup;
 			children = (
 				632483C22401638700ED29E5 /* IModel.swift */,
+				632483C42401808000ED29E5 /* ContainerView.swift */,
+				632483C62401809400ED29E5 /* BaseModel.swift */,
+				632483C82401812A00ED29E5 /* LazyView.swift */,
+				632483CA240185C000ED29E5 /* IModelView.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -716,6 +728,7 @@
 				6324834D2401590100ED29E5 /* NetworkConfiguration.swift in Sources */,
 				632483492401590100ED29E5 /* ContentResponse.swift in Sources */,
 				632483A724015FE800ED29E5 /* NewsItemModel.swift in Sources */,
+				632483CB240185C000ED29E5 /* IModelView.swift in Sources */,
 				632483522401590100ED29E5 /* ISearchProvider.swift in Sources */,
 				632483BB24015FE800ED29E5 /* SearchView.swift in Sources */,
 				632483472401590100ED29E5 /* Map+Date.swift in Sources */,
@@ -723,6 +736,7 @@
 				632483572401590200ED29E5 /* DI.swift in Sources */,
 				632483B324015FE800ED29E5 /* ThumbImage.swift in Sources */,
 				63350972240156C3000FB880 /* AppDelegate.swift in Sources */,
+				632483C52401808100ED29E5 /* ContainerView.swift in Sources */,
 				632483512401590100ED29E5 /* SearchProvider.swift in Sources */,
 				6324835F2401590200ED29E5 /* SearchItem.swift in Sources */,
 				632483592401590200ED29E5 /* DIContainer.swift in Sources */,
@@ -736,7 +750,9 @@
 				632483482401590100ED29E5 /* String + Date.swift in Sources */,
 				6324835C2401590200ED29E5 /* ImageLoader.swift in Sources */,
 				6324834F2401590100ED29E5 /* INetworkService.swift in Sources */,
+				632483C92401812A00ED29E5 /* LazyView.swift in Sources */,
 				632483C024015FE800ED29E5 /* DataModel.swift in Sources */,
+				632483C72401809400ED29E5 /* BaseModel.swift in Sources */,
 				632483AE24015FE800ED29E5 /* CropSwiftImage.swift in Sources */,
 				6324835B2401590200ED29E5 /* NewsService.swift in Sources */,
 				632483B424015FE800ED29E5 /* LargeText.swift in Sources */,
