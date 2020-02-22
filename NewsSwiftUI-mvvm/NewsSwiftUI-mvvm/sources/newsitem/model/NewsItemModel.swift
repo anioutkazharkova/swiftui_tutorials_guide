@@ -13,6 +13,7 @@ import Combine
 
 class NewsItemModel: ObservableObject,IModel {
     
+    var listener: IContainer?
     private weak var newsService: INewsService? = DI.serviceContainer.newsService
     static let shared = NewsItemModel()
     

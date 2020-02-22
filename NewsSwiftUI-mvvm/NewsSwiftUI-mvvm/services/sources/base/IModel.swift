@@ -9,8 +9,11 @@
 import Foundation
 protocol  IModel:class {
     func update(data: Any?)
+    var listener:IContainer? {get set}
     
-    var error: String? {get set}
-    
-    func errorShown()
+}
+
+
+protocol  IContainer {
+    func showError(error: String)
 }

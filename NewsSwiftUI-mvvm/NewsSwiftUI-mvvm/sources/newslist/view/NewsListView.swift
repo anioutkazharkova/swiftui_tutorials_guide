@@ -35,4 +35,8 @@ struct NewsListView: View{
     }
 }
 
-
+extension NewsListView:IModelView {
+    var viewModel: IModel? {
+        return model
+    }
+}

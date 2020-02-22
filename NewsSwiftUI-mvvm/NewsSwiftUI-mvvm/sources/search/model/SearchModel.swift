@@ -9,9 +9,9 @@
 import Foundation
 import Combine
 
-class SearchModel : ObservableObject {
+class SearchModel : ObservableObject,IModel {
     private weak var newsService: INewsService? = DI.serviceContainer.newsService
-       
+     var listener: IContainer?
        var retrievedData: [NewsItem] = [NewsItem]()
        var searchHistory: [SearchItem] = [SearchItem]()
        var foundResults: [NewsItem] = [NewsItem]()
@@ -100,5 +100,9 @@ class SearchModel : ObservableObject {
                 searchLocal(query: query)
             }
         }
+    }
+    
+    func update(data: Any?) {
+        
     }
 }
