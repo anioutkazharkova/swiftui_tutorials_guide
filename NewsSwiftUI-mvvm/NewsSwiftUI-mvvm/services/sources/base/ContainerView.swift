@@ -19,29 +19,30 @@ struct ContainerView<Content>: IContainer, View where Content: View&IModelView {
     public init(content: Content) {
         self.content = content
         content.viewModel?.listener = self
-        //self.common = content.viewModel as! BaseModel
     }
 
     var body : some View {
         ZStack {
             content
+            if (self.containerModel.isLoading) {
+                LoaderView()
+            }
         }.alert(isPresented: $containerModel.hasError){
             Alert(title: Text(""), message: Text(containerModel.errorText), dismissButton: .default(Text("OK")){
-                self.containerModel.hasError = false
-                self.containerModel.errorText = ""
+                self.containerModel.errorShown()
                 })
         }
     }
     
     func showError(error: String) {
-        self.containerModel.errorText = error
-        if (!error.isEmpty) {
-            self.containerModel.hasError = true
-        }
+        self.containerModel.setupError(error: error)
     }
-}
-
-class ContainerModel:ObservableObject {
-    @Published var hasError: Bool = false
-    @Published   var errorText: String = ""
+    
+    func showLoading() {
+        self.containerModel.showLoading()
+    }
+    
+    func hideLoading() {
+        self.containerModel.hideLoading()
+    }
 }

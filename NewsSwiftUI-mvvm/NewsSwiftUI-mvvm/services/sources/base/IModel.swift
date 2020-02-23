@@ -16,4 +16,8 @@ protocol  IModel:class {
 
 protocol  IContainer {
     func showError(error: String)
+    
+    func showLoading()
+    
+    func hideLoading()
 }

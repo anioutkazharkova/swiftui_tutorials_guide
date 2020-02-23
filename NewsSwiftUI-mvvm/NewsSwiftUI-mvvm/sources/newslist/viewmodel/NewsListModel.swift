@@ -45,10 +45,11 @@ class NewsListModel: ObservableObject,INewsListLogic  {
                 return
             }
         }
+        self.listener?.showLoading()
         self.newsService?.getNewsList(page: page) { [weak self]
             response in
             guard let self = self else {return}
-            
+            self.listener?.hideLoading()
             if let error = response.error {
                 self.error = error.message
                 self.listener?.showError(error: error.message ?? "")
