@@ -43,3 +43,11 @@ struct SearchView: View {
         }.navigationBarTitle("Search",displayMode: .inline)
     }
 }
+
+extension SearchView : IModelView {
+    var viewModel: IModel? {
+        get {
+            return model
+        }
+    }
+}

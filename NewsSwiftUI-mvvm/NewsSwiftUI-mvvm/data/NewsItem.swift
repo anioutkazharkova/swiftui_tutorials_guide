@@ -24,6 +24,12 @@ class NewsItem: Mappable,Identifiable {
     var content: String?
     var favorite: Bool = false
     
+    var dateString: String {
+        get {
+            return self.publishedAt?.formatToString("dd.MM.yyyy") ?? ""
+        }
+    }
+    
     init() {}
     required init?(map: Map) {}
     

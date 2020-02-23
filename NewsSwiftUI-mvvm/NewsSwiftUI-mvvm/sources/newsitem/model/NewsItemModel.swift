@@ -15,7 +15,7 @@ class NewsItemModel: ObservableObject,IModel {
     
     var listener: IContainer?
     private weak var newsService: INewsService? = DI.serviceContainer.newsService
-    static let shared = NewsItemModel()
+    private var item: NewsItem? = nil
     
     @Published var newsItem: NewsItem = NewsItem()
     @Published var isFavorite: Bool = false
@@ -34,8 +34,13 @@ class NewsItemModel: ObservableObject,IModel {
     }
     
     func setupData(item: NewsItem){
-        self.newsItem = item
+        self.item = item
         self.isFavorite = item.favorite
+    }
+    
+    func setupContent() {
+        self.newsItem = item ?? NewsItem()
+        self.isFavorite = item?.favorite ?? false 
     }
     
     func updateFavorite() {
@@ -51,10 +56,14 @@ class NewsItemModel: ObservableObject,IModel {
     }
     
     private func addToFavorite() {
+        self.listener?.showLoading()
         newsService?.addToFavorite(newsItem: newsItem)
+        self.listener?.hideLoading()
     }
     
     private func removeFromFavorite() {
+        self.listener?.showLoading()
         newsService?.removeFromFavorite(newsItem: newsItem)
+        self.listener?.hideLoading()
     }
 }

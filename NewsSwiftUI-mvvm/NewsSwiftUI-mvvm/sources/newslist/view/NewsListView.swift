@@ -18,13 +18,14 @@ struct NewsListView: View{
     var body: some View {
         NavigationView{
         List(model.data) { item in
-            NavigationLink(destination:NewsItemView(item:item)) {
+            NavigationLink(destination:
+            ContainerView(content: NewsItemView(item:item))) {
             NewsItemRow(data: item,action: {id in
                 self.model.updateFavorite(id: id)
             })
             }
         }.navigationBarTitle("News", displayMode: .inline)
-            .navigationBarItems(trailing: NavigationLink(destination: SearchView()){
+            .navigationBarItems(trailing: NavigationLink(destination: ContainerView(content:SearchView())){
                 Image("search").resizable().frame(width: 20, height: 20, alignment: .topTrailing)
             })
             .onAppear {

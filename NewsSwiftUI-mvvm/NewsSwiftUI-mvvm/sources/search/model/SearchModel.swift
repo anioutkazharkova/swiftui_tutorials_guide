@@ -61,11 +61,13 @@ class SearchModel : ObservableObject,IModel {
                 return
             }
         }
+        self.listener?.showLoading()
         newsService?.searchNews(query: query, page: self.page) {[weak self]
             response in
             guard let self = self else {return}
+            self.listener?.hideLoading()
             if let error = response.error {
-                //self?.output?.setupSearchResponse(response: SearchResultsResponse.error(error: error.message ?? ""))
+                self.listener?.showError(error: error.message ?? "")
             } else {
                 if let data = response.content {
                     self.total = data.articles?.count ?? 0
