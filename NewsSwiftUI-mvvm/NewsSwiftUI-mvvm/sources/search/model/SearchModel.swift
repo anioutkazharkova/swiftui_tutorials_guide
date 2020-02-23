@@ -10,23 +10,22 @@ import Foundation
 import Combine
 
 class SearchModel : ObservableObject,IModel {
-    private weak var newsService: INewsService? = DI.serviceContainer.newsService
-     var listener: IContainer?
-       var retrievedData: [NewsItem] = [NewsItem]()
-       var searchHistory: [SearchItem] = [SearchItem]()
-       var foundResults: [NewsItem] = [NewsItem]()
-       
-       private var query = ""
-       private let take: Int = 20
-       private var page: Int = 0
-       private var total: Int = 0
-    
     @Published var text: String = ""
     @Published var items:[NewsItem] = [NewsItem]()
     @Published var search:[SearchItem] = [SearchItem]()
     
-    static let shared = SearchModel()
+    var listener: IContainer?
     
+    private weak var newsService: INewsService? = DI.serviceContainer.newsService
+    
+    private var query = ""
+    private let take: Int = 20
+    private var page: Int = 0
+    private var total: Int = 0
+    
+    private var retrievedData: [NewsItem] = [NewsItem]()
+    private var searchHistory: [SearchItem] = [SearchItem]()
+    private var foundResults: [NewsItem] = [NewsItem]()
     
     func loadSearchHistory() {
         newsService?.getRecentRequests { [weak self] results in
@@ -38,7 +37,7 @@ class SearchModel : ObservableObject,IModel {
     
     func searchWithQuery(query: String) {
         if query.isEmpty {
-             self.search = self.searchHistory
+            self.search = self.searchHistory
             
         } else {
             let item = SearchItem(title: query)
@@ -97,7 +96,7 @@ class SearchModel : ObservableObject,IModel {
     
     private func searchLocal(query: String) {
         foundResults = retrievedData.filter {($0.title ?? "").contains(query)}
-         self.items = self.foundResults
+        self.items = self.foundResults
     }
     
     func searchSavedRequest(index: Int) {
