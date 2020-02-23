@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SearchView: View {
     @State private var text: String = ""
-    
     @ObservedObject var model: SearchModel = SearchModel()
     
     

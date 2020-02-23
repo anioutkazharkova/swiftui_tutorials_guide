@@ -17,10 +17,9 @@ protocol INewsListLogic {
 }
 
 class NewsListModel: ObservableObject,INewsListLogic  {
-    static let shared = NewsListModel()
     var listener: IContainer?
+    
     @Published var newsResult: [NewsItem] = [NewsItem]()
-    @Published var error: String? = nil
     private weak var newsService: INewsService? = DI.serviceContainer.newsService
     
     private let take: Int = 20
@@ -51,7 +50,6 @@ class NewsListModel: ObservableObject,INewsListLogic  {
             guard let self = self else {return}
             self.listener?.hideLoading()
             if let error = response.error {
-                self.error = error.message
                 self.listener?.showError(error: error.message ?? "")
             } else {
                 if let data = response.content {
