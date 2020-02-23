@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct SearchView: View {
+    @Binding var isActive: Bool
     @State private var text: String = ""
     @ObservedObject var model: SearchModel = SearchModel()
     
@@ -23,7 +24,9 @@ struct SearchView: View {
             if model.items.count > 0 {
                 List {
                     ForEach(model.items){ item in
-                        NewsItemRow(data: item, action: {_ in})
+                        NavigationLink(destination: ContainerView(content:NewsItemView(item: item))) {
+                            NewsItemRow(data: item, action: {_ in})
+                        }
                     }
                 }
             }
@@ -38,7 +41,11 @@ struct SearchView: View {
             }
             Spacer()
         }.onAppear {
+            self.isActive = false
+
             self.model.loadSearchHistory()
+        }.onDisappear(){
+            self.isActive = false
         }.navigationBarTitle("Search",displayMode: .inline)
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 
 struct NewsListView: View{
+    @State var isSearchActive: Bool  = false
     
     @ObservedObject var model: NewsListModel =  NewsListModel()
     
@@ -25,12 +26,11 @@ struct NewsListView: View{
             })
             }
         }.navigationBarTitle("News", displayMode: .inline)
-            .navigationBarItems(trailing: NavigationLink(destination: ContainerView(content:SearchView())){
+            .navigationBarItems(trailing: NavigationLink(destination: ContainerView(content:SearchView(isActive: self.$isSearchActive)),isActive: self.$isSearchActive){
                 Image("search").resizable().frame(width: 20, height: 20, alignment: .topTrailing)
             })
             .onAppear {
                 self.model.getNews(withRefresh: true)
-        }.onDisappear {
         }
         }
     }

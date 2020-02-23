@@ -41,7 +41,13 @@ class SearchModel : ObservableObject,IModel {
              self.search = self.searchHistory
             
         } else {
-            searchHistory.insert(SearchItem(title: query), at: 0)
+            let item = SearchItem(title: query)
+            if searchHistory.contains(item) {
+                if let index = searchHistory.firstIndex(of: item) {
+                    searchHistory.remove(at: index)
+                }
+            }
+            searchHistory.insert(item, at: 0)
             newsService?.saveRecentRequests(items: searchHistory)
             if query.count > 2 {
                 searchNews(query: query, withRefresh: true)
