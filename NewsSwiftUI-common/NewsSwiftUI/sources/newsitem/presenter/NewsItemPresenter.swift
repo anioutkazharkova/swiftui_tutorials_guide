@@ -21,15 +21,15 @@ class NewsItemPresenter: INewsItemPresenter {
     }
     
      
-       func showError(error: String) {
-         self.output?.viewModel?.listener?.showError(error: error)
-         }
-      
-      func showLoading() {
-           self.output?.viewModel?.listener?.showLoading()
-         }
-         
-         func hideLoading() {
-             self.output?.viewModel?.listener?.hideLoading()
-         }
+     func showError(error: String) {
+              self.output?.showError(error: error)
+              }
+           
+           func showLoading() {
+                self.output?.showLoading()
+              }
+              
+              func hideLoading() {
+                  self.output?.hideLoading()
+              }
 }

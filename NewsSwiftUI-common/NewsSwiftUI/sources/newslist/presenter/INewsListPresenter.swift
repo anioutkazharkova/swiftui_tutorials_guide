@@ -15,9 +15,11 @@ protocol INewsListPresenter: class,IPresenter {
 }
 
 protocol IPresenter {
+    
     func showError(error: String)
     
     func showLoading()
     
     func hideLoading()
 }
+

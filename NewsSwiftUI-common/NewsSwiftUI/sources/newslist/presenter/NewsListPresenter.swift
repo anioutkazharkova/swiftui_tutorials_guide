@@ -21,14 +21,14 @@ class NewsListPresenter:NSObject,INewsListPresenter {
     }
     
       func showError(error: String) {
-        self.output?.viewModel?.listener?.showError(error: error)
+        self.output?.showError(error: error)
         }
      
      func showLoading() {
-          self.output?.viewModel?.listener?.showLoading()
+          self.output?.showLoading()
         }
         
         func hideLoading() {
-            self.output?.viewModel?.listener?.hideLoading()
+            self.output?.hideLoading()
         }
 }

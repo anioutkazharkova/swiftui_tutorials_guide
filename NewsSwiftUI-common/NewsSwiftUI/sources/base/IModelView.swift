@@ -11,5 +11,24 @@ import Foundation
 protocol IModelView {
     var viewModel: IModel? {get}
     
-    //var container: IContainer? {get set}
+    func showError(error: String)
+    
+    func showLoading()
+    
+    func hideLoading()
+}
+
+
+extension IModelView {
+    func showError(error: String) {
+        self.viewModel?.listener?.showError(error: error)
+    }
+       
+    func showLoading() {
+        self.viewModel?.listener?.showLoading()
+    }
+       
+    func hideLoading() {
+        self.viewModel?.listener?.hideLoading()
+    }
 }
