@@ -19,7 +19,8 @@ class ImageLoader: ObservableObject {
     }
 
     init(urlString:String) {
-        ImageManager.sharedInstance.receiveImage(forKey: urlString) { (im) in
+        ImageManager.sharedInstance.receiveImage(forKey: urlString) { [weak self] (im) in
+            guard let self = self else {return}
             DispatchQueue.main.async {
                 self.data = im
             }

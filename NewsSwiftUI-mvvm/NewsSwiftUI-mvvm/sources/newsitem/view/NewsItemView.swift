@@ -20,7 +20,7 @@ struct NewsItemView: View{
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
-            CachedImage(withURL: model.data.urlToImage ?? "")
+            CachedLoaderImage(withURL: model.data.urlToImage ?? "")
             Text(model.data.title ?? "").font(.system(size: 22)).bold().padding(EdgeInsets(top: 20,leading: 20,bottom: 0,trailing: 20))
             Text(model.data.dateString).font(.system(size: 12)).padding(EdgeInsets(top: 10,leading: 20,bottom: 0,trailing: 10))
             Text(model.data.content ?? "").font(.system(size: 17)).padding(EdgeInsets(top: 10,leading: 20,bottom: 20,trailing: 20))
